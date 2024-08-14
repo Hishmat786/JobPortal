@@ -1,15 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Wellcome from './Components/Wellcome'
+import JobSeekerLogIn from './Components/JobSeekerLogIn';
+import Employeer from './Components/Employeer';
+import JobSeekerRegister from './Components/JobSeekerRegister';
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <Wellcome/>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Wellcome />} />
+          <Route path="/job-seeker" element={<JobSeekerLogIn />} />
+          <Route path="/employer" element={<Employeer />} />
+          <Route path="/register" element={<JobSeekerRegister/>} />
+        </Routes>
+      </Router>
     </>
   )
 }
