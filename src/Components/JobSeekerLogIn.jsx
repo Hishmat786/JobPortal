@@ -7,26 +7,44 @@ import login from '../assets/login.png';
 function JobSeekerLogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const jobseekers = JSON.parse(localStorage.getItem('jobseekerList')) || [];
+    const jobseekers = JSON.parse(localStorage.getItem('JobseekerList')) || [];
     const user = jobseekers.find(
       (user) => user.email === email && user.password === password
     );
 
     if (user) {
       // Login successful, redirect or handle accordingly
-      console.log('Login successful!');
+      alert('login successfully');
       // e.g., navigate('/dashboard');
     } else {
       alert('Invalid credentials');
     }
   };
 
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const jobseekers = JSON.parse(localStorage.getItem('JobseekerList')) || [];
+    const userExists = jobseekers.some(user => user.email === email);
+
+    if (userExists) {
+      alert('User already exists');
+      return;
+    }
+
+    const newUser = { email, password };
+    jobseekers.push(newUser);
+    localStorage.setItem('JobseekerList', JSON.stringify(jobseekers));
+    alert('Registration successful. Please log in.');
+    setIsRegistering(false); // Switch to login form
+  };
+
   return (
-    <>
+    <div>
       <Header />
       <div className="flex h-screen">
         {/* Welcome Section */}
@@ -36,11 +54,13 @@ function JobSeekerLogIn() {
           <img src={login} alt="Welcome" className="w-2/3 max-w-md" />
         </div>
 
-        {/* Login Section */}
+        {/* Form Section */}
         <div className="flex-1 bg-gray-100 p-12 flex flex-col justify-center items-center rounded-lg">
           <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-            <form onSubmit={handleLogin}>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              {isRegistering ? 'Register' : 'Login as Employer'}
+            </h2>
+            <form onSubmit={isRegistering ? handleRegister : handleLogin}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                 <input
@@ -69,16 +89,24 @@ function JobSeekerLogIn() {
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Login
+                {isRegistering ? 'Register' : 'Login'}
               </button>
               <p className="mt-4 text-center">
-                Don't have an account? <Link to="/register" className="text-blue-500">Sign up</Link>
+                {isRegistering ? (
+                  <>
+                    Already have an account? <button onClick={() => setIsRegistering(false)} className="text-blue-500">Login</button>
+                  </>
+                ) : (
+                  <>
+                    Don't have an account? <button onClick={() => setIsRegistering(true)} className="text-blue-500">Sign up</button>
+                  </>
+                )}
               </p>
             </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

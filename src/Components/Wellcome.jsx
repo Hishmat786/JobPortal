@@ -9,8 +9,8 @@ function Wellcome() {
       <Header/>
       <div className='flex flex-row justify-around gap-8 p-10'>
         <div className='grid  gap-10 ml-16'>
-            <div className='ml-7 w-2/3 mt-20 '>
-                <h1 className='font-dancing text-3xl text-cyan-800'><span className='text-red-600'>Welcome to Job Portal!</span><br/> Discover your dream job and advance your career with ease.<br/> <br></br>Happy job hunting!</h1>
+            <div className='ml-7  mt-20 '>
+                <h1 className='font-dancing text-3xl text-cyan-800'><span className='text-red-600 text-5xl'>Welcome to Job Portal!</span><br/> Discover your dream job and advance your career with ease.<br/> <br></br>Happy job hunting!</h1>
             </div>
             <div className='flex flex-row justify-start gap-7 p-3'>
               <Link to="/job-seeker">

@@ -12,7 +12,7 @@ function JobSeekerRegister() {
     const jobseekers = JSON.parse(localStorage.getItem('jobseekerList')) || [];
     jobseekers.push({ email, password });
     localStorage.setItem('jobseekerList', JSON.stringify(jobseekers));
-    navigate('/login');
+    navigate('/job-seeker');
   };
 
   return (
@@ -21,7 +21,7 @@ function JobSeekerRegister() {
       <div className="flex h-screen">
         <div className="flex-1 bg-gray-100 p-12 flex flex-col justify-center items-center rounded-lg">
           <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
-            <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center">Register As Job Seeker</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
