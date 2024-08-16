@@ -19,8 +19,8 @@ function JobSeekerLogIn() {
 
     if (user) {
       // Login successful, redirect or handle accordingly
-      alert('login successfully');
-      // e.g., navigate('/dashboard');
+      // alert('login successfully');
+     navigate('/job-seeker-dashboard')
     } else {
       alert('Invalid credentials');
     }
@@ -48,7 +48,7 @@ function JobSeekerLogIn() {
       <Header />
       <div className="flex h-screen">
         {/* Welcome Section */}
-        <div className="flex-1 bg-blue-500 text-white p-12 flex flex-col justify-center items-center rounded-lg">
+        <div className="flex-1 bg-slate-400 text-white p-12 flex flex-col justify-center items-center rounded-lg">
           <h1 className="text-4xl font-bold mb-4">Welcome to the Job Portal</h1>
           <p className="text-xl mb-6">Find your dream job and advance your career with ease.</p>
           <img src={login} alt="Welcome" className="w-2/3 max-w-md" />
@@ -58,7 +58,7 @@ function JobSeekerLogIn() {
         <div className="flex-1 bg-gray-100 p-12 flex flex-col justify-center items-center rounded-lg">
           <div className="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
             <h2 className="text-2xl font-bold mb-6 text-center">
-              {isRegistering ? 'Register' : 'Login as Employer'}
+              {isRegistering ? 'Register' : 'Login as Job Seeker'}
             </h2>
             <form onSubmit={isRegistering ? handleRegister : handleLogin}>
               <div className="mb-4">
@@ -87,7 +87,7 @@ function JobSeekerLogIn() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full bg-slate-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 {isRegistering ? 'Register' : 'Login'}
               </button>
