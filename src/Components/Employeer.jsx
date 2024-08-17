@@ -18,7 +18,7 @@ function Employeer() {
 
     if (user) {
       // alert('login successfully');
-      navigate('/employer-dashboard');
+      navigate(`/employer-dashboard?email=${encodeURIComponent(user.email)}`);
     } else {
       alert('Invalid credentials');
     }
@@ -39,6 +39,8 @@ function Employeer() {
     localStorage.setItem('EmployeerList', JSON.stringify(jobseekers));
     alert('Registration successful. Please log in.');
     setIsRegistering(false); // Switch to login form
+    setEmail('')
+    setPassword('')
   };
 
   return (

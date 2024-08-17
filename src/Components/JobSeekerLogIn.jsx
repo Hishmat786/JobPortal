@@ -41,6 +41,8 @@ function JobSeekerLogIn() {
     localStorage.setItem('JobseekerList', JSON.stringify(jobseekers));
     alert('Registration successful. Please log in.');
     setIsRegistering(false); // Switch to login form
+    setEmail('')
+    setPassword('')
   };
 
   return (
