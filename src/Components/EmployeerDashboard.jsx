@@ -39,9 +39,9 @@ function EmployeerDashboard() {
             <div className='flex flex-row w-full'>
                 <div className='w-1/5 h-screen bg-slate-600 rounded-lg'>
                     <aside className='flex flex-col'>
-                        <div className='flex flex-row gap-5 p-3 m-2 bg-slate-400 rounded-xl'>
+                        <div className='flex flex-row gap-5 p-3 m-2 bg-slate-400 rounded-xl overflow-hidden'>
                             <img src={profile} alt="profile" className='w-10 h-10 rounded-full' />
-                            <h2 className='font-poppins text-2xl mt-1 text-zinc-700 '>{email.split('@')[0].toUpperCase()}</h2>
+                            <h2 className='font-poppins text-2xl mt-1 text-zinc-700 w-full turncate '>{email.split('@')[0].toUpperCase()}</h2>
                         </div>
                         <div className='m-2 p-3 bg-slate-500 rounded-xl'>
                             <p className='text-white'>Overview</p>

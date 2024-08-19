@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import login from '../assets/login.png';
 
 function JobSeekerLogIn() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
@@ -18,9 +19,9 @@ function JobSeekerLogIn() {
     );
 
     if (user) {
-      // Login successful, redirect or handle accordingly
+      
       // alert('login successfully');
-     navigate('/job-seeker-dashboard')
+     navigate(`/job-seeker-dashboard?email=${encodeURIComponent(user.email)}`)
     } else {
       alert('Invalid credentials');
     }
