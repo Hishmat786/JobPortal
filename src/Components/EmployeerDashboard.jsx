@@ -30,7 +30,6 @@ function EmployeerDashboard() {
 
     // Handle Logout
     const handleLogout = () => {
-        // Clear session data and redirect to login page
         navigate('/');
     };
 
@@ -114,11 +113,9 @@ function EmployeerDashboard() {
                     </aside>
                 </div>
                 <div className='w-4/5 h-screen bg-white overflow-y-auto'>
-                    {/* Render content based on state */}
+                    
                     {currentView === 'postJob' && <PostJobForm email={email} addJob={addJob} />}
                     {currentView === 'myJobs' && <MyJobPosts email={email} />}
-                    {/* Add more conditional rendering for other views */}
-                    {/* Example: {currentView === 'applications' && <ApplicationsComponent />} */}
                 </div>
             </div>
         </div>

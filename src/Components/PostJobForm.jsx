@@ -19,7 +19,7 @@ const PostJobForm = ({ email, addJob }) => {
             location,
             salary,
             requirements,
-            category: 'Technology', // You can modify this to be dynamic
+            category: 'Technology',
         };
 
         // Add job to local storage
