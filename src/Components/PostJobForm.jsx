@@ -87,7 +87,7 @@ const PostJobForm = ({ email, addJob }) => {
                         rows='4'
                     ></textarea>
                 </div>
-                <button type='submit' className='px-4 py-2 bg-blue-500 text-white rounded-md'>
+                <button type='submit' className='px-4 py-2 bg-slate-400 hover:bg-slate-500 text-white rounded-md'>
                     Post Job
                 </button>
             </form>
