@@ -68,60 +68,60 @@ function JobSeekerDashboard() {
     <div>
       <Header />
       <div className='flex flex-row w-full'>
-        <div className='w-1/5 h-screen bg-slate-600 rounded-lg'>
+        <div className='w-1/5 h-screen bg-slate-600 rounded-lg lg:w-1/5 md:w-1/6 sm:w-16'>
           <aside className='flex flex-col'>
-            <div className='flex flex-row gap-5 p-3 m-2 bg-slate-400 rounded-xl overflow-hidden'>
-              <img src={profile} alt="profile" className='w-10 h-10 rounded-full' />
-              <h2 className='font-poppins text-2xl mt-1 text-zinc-700 w-full turncate '>{email.split('@')[0].toUpperCase()}</h2>
+            <div className='flex flex-row gap-5 p-3 m-2 bg-slate-400 rounded-xl overflow-hidden sm:gap-2'>
+              <img src={profile} alt="profile" className='w-10 h-10 rounded-full sm:w-8 sm:h-8' />
+              <h2 className='font-poppins text-2xl mt-1 text-zinc-700 w-full truncate sm:hidden'>{email.split('@')[0].toUpperCase()}</h2>
             </div>
             <div className='m-2 p-3 bg-slate-500 rounded-xl'>
-              <p className='text-white'>Overview</p>
-              <div className='flex flex-col p-2 gap-3 '>
+              <p className='text-white hidden sm:block'>Overview</p>
+              <div className='flex flex-col p-2 gap-3'>
                 <div className='flex flex-row gap-4 items-center transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'>
                   <FontAwesomeIcon icon={faTachometerAlt} className='text-white text-2xl' />
-                  <h1 className='text-xl font-poppins text-zinc-700 '>Dashboard</h1>
+                  <h1 className='text-xl font-poppins text-zinc-700 hidden sm:block'>Dashboard</h1>
                 </div>
                 <div className='flex flex-row gap-4 items-center transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'>
                   <FontAwesomeIcon icon={faComment} className='text-white text-2xl' />
-                  <h1 className='text-xl text-zinc-700 '>Chat</h1>
+                  <h1 className='text-xl text-zinc-700 hidden sm:block'>Chat</h1>
                 </div>
               </div>
             </div>
             <div className='flex flex-col gap-4 m-2 p-3 bg-slate-500 rounded-xl'>
-              <p className='text-white'>Manage Hiring</p>
+              <p className='text-white hidden sm:block'>Manage Hiring</p>
               <div
                 onClick={() => handleViewChange('applyJobs')}
                 className='flex items-center gap-4 transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'
               >
                 <FontAwesomeIcon icon={faPlusCircle} className='text-white text-2xl' />
-                <span className='text-xl text-zinc-700'>Apply For Jobs</span>
+                <span className='text-xl text-zinc-700 hidden sm:block'>Apply For Jobs</span>
               </div>
               <div
                 onClick={viewAppliedJobs}
                 className='flex items-center gap-4 transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'
               >
                 <FontAwesomeIcon icon={faBriefcase} className='text-white text-2xl' />
-                <span className='text-xl text-zinc-700'>Applied Jobs</span>
+                <span className='text-xl text-zinc-700 hidden sm:block'>Applied Jobs</span>
               </div>
             </div>
             <div className='flex flex-col gap-4 m-2 p-3 bg-slate-500 rounded-xl'>
-              <p className='text-white'>Settings</p>
+              <p className='text-white hidden sm:block'>Settings</p>
               <div className='flex items-center gap-4 transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'>
                 <FontAwesomeIcon icon={faUser} className='text-white text-2xl' />
-                <span className='text-xl text-zinc-700'>My Profile</span>
+                <span className='text-xl text-zinc-700 hidden sm:block'>My Profile</span>
               </div>
               <div
                 onClick={handleLogout}
                 className='flex items-center gap-4 transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'
               >
                 <FontAwesomeIcon icon={faSignOutAlt} className='text-white text-2xl' />
-                <span className='text-xl text-zinc-700'>Logout</span>
+                <span className='text-xl text-zinc-700 hidden sm:block'>Logout</span>
               </div>
             </div>
           </aside>
         </div>
         
-        <div className='w-4/5 h-screen bg-white overflow-y-auto p-4'>
+        <div className='w-4/5 h-screen bg-white overflow-y-auto p-4 lg:w-4/5 md:w-5/6 sm:w-full'>
           {view === 'applyJobs' && (
             <div>
               <h2 className='text-2xl font-semibold mb-4'>Available Jobs</h2>

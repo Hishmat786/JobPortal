@@ -17,15 +17,13 @@ function Header() {
     };
 
     return (
-        <div className="flex flex-col md:flex-row justify-between items-center w-full h-auto md:h-20 p-4">
-    
+        <div className="sticky top-0 z-50 flex flex-col md:flex-row justify-between items-center w-full h-auto md:h-20 p-4 bg-white shadow-md">
             <div className="flex items-center justify-between w-full md:w-auto">
                 <div className="flex items-center gap-4">
                     <img src={logo} alt="logo" className="w-10 h-10" />
                     <h1 className="font-eduBeginner text-2xl md:text-3xl">Job Portal</h1>
                 </div>
 
-            
                 <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
                     <i className="fas fa-bars text-3xl"></i>
                 </div>
@@ -33,13 +31,11 @@ function Header() {
 
             <div className={`md:flex md:flex-row gap-4 text-xl md:text-2xl font-mono ${isOpen ? 'flex flex-col' : 'hidden'}`}>
                 <ul className="flex flex-col md:flex-row gap-2 md:gap-4 text-center">
-                    {
-                        Links.map((item, index) => (
-                            <li key={index} className="cursor-pointer">
-                                {item.name}
-                            </li>
-                        ))
-                    }
+                    {Links.map((item, index) => (
+                        <li key={index} className="cursor-pointer">
+                            {item.name}
+                        </li>
+                    ))}
                 </ul>
             </div>
 
