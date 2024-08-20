@@ -113,7 +113,6 @@ function EmployeerDashboard() {
                     </aside>
                 </div>
                 <div className='w-4/5 h-screen bg-white overflow-y-auto'>
-                    
                     {currentView === 'postJob' && <PostJobForm email={email} addJob={addJob} />}
                     {currentView === 'myJobs' && <MyJobPosts email={email} />}
                 </div>
