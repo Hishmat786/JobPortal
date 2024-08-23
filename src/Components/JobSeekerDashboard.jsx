@@ -9,7 +9,8 @@ function JobSeekerDashboard() {
   const [jobs, setJobs] = useState([]);
   const [appliedJobs, setAppliedJobs] = useState([]);
   const [view, setView] = useState('applyJobs');
-  
+  const [searchQuery, setSearchQuery] = useState('');
+
   const location = useLocation();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
@@ -21,15 +22,26 @@ function JobSeekerDashboard() {
     setJobs(storedJobs);
   }, []);
 
+  const handleSearch = (e) => setSearchQuery(e.target.value);
+
+  const filteredJobs = jobs.filter((job) => {
+    return (
+      job.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.location.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+
+
+
   const handleApply = (job) => {
     const applied = JSON.parse(localStorage.getItem('appliedJobs')) || {};
     if (!applied[email]) {
       applied[email] = [];
     }
-    
+
     // Check if the job is already applied
     const alreadyApplied = applied[email].some(appliedJob => appliedJob.id === job.id);
-    
+
     if (alreadyApplied) {
       alert('You have already applied for this job.');
     } else {
@@ -53,7 +65,7 @@ function JobSeekerDashboard() {
   const handleLogout = () => {
     navigate('/');
   };
-  
+
   const Withdraw = (job) => {
     const applied = JSON.parse(localStorage.getItem('appliedJobs')) || {};
     if (applied[email]) {
@@ -68,13 +80,13 @@ function JobSeekerDashboard() {
     <div>
       <Header />
       <div className='flex flex-row w-full'>
-        <div className='w-1/5 h-screen bg-slate-600 rounded-lg lg:w-1/5 md:w-1/6 sm:w-16'>
+        <div className='w-1/5 h-screen bg-slate-400 rounded-lg lg:w-1/5 md:w-1/6 sm:w-16'>
           <aside className='flex flex-col'>
-            <div className='flex flex-row gap-5 p-3 m-2 bg-slate-400 rounded-xl overflow-hidden sm:gap-2'>
+            <div className='flex flex-row gap-5 p-3 m-2 bg-slate-300 rounded-xl overflow-hidden sm:gap-2'>
               <img src={profile} alt="profile" className='w-10 h-10 rounded-full sm:w-8 sm:h-8' />
-              <h2 className='font-poppins text-2xl mt-1 text-zinc-700 w-full truncate sm:hidden'>{email.split('@')[0].toUpperCase()}</h2>
+              <h2 className='font-poppins text-2xl mt-1 text-zinc-700 truncate '>{email.split('@')[0].toUpperCase()}</h2>
             </div>
-            <div className='m-2 p-3 bg-slate-500 rounded-xl'>
+            <div className='m-2 p-3 rounded-xl border border-slate-600'>
               <p className='text-white hidden sm:block'>Overview</p>
               <div className='flex flex-col p-2 gap-3'>
                 <div className='flex flex-row gap-4 items-center transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'>
@@ -87,7 +99,7 @@ function JobSeekerDashboard() {
                 </div>
               </div>
             </div>
-            <div className='flex flex-col gap-4 m-2 p-3 bg-slate-500 rounded-xl'>
+            <div className='flex flex-col gap-4 m-2 p-3 rounded-xl border border-slate-600'>
               <p className='text-white hidden sm:block'>Manage Hiring</p>
               <div
                 onClick={() => handleViewChange('applyJobs')}
@@ -104,7 +116,7 @@ function JobSeekerDashboard() {
                 <span className='text-xl text-zinc-700 hidden sm:block'>Applied Jobs</span>
               </div>
             </div>
-            <div className='flex flex-col gap-4 m-2 p-3 bg-slate-500 rounded-xl'>
+            <div className='flex flex-col gap-4 m-2 p-3 rounded-xl border border-slate-600'>
               <p className='text-white hidden sm:block'>Settings</p>
               <div className='flex items-center gap-4 transition transform hover:scale-105 hover:bg-slate-400 hover:p-2 hover:rounded-xl hover:cursor-pointer'>
                 <FontAwesomeIcon icon={faUser} className='text-white text-2xl' />
@@ -120,27 +132,52 @@ function JobSeekerDashboard() {
             </div>
           </aside>
         </div>
-        
+
         <div className='w-4/5 h-screen bg-white overflow-y-auto p-4 lg:w-4/5 md:w-5/6 sm:w-full'>
           {view === 'applyJobs' && (
             <div>
-              <h2 className='text-2xl font-semibold mb-4'>Available Jobs</h2>
-              <div className='grid grid-cols-1 gap-4'>
-                {jobs.map((job, index) => (
-                  <div key={index} className='p-4 border rounded-lg shadow'>
-                    <h3 className='text-xl font-bold'>{job.jobTitle}</h3>
-                    <p>{job.jobDescription}</p>
-                    <p><strong>Location:</strong> {job.location}</p>
-                    <p><strong>Salary:</strong> {job.salary}</p>
-                    <p><strong>Requirements:</strong> {job.requirements}</p>
-                    <button
-                      onClick={() => handleApply(job)}
-                      className='mt-2 bg-slate-400 text-white px-4 py-2 rounded-3xl hover:bg-slate-500'
-                    >
-                      Apply
-                    </button>
-                  </div>
-                ))}
+              {/* Search section */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="Search by Title or Location"
+                  value={searchQuery}
+                  onChange={handleSearch}
+                  className="w-full p-2 border border-gray-300 rounded-lg sm:w-1/2"
+                />
+              </div>
+
+              {/* Available jobs section */}
+              <div>
+                <h2 className="text-2xl font-semibold mb-4">Available Jobs</h2>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
+                {filteredJobs.length > 0 ? (
+                  filteredJobs.map((job, index) => (
+                    <div key={index} className="p-4 border rounded-lg shadow">
+                      <h3 className="text-xl font-bold">{job.jobTitle}</h3>
+                      <p>{job.jobDescription}</p>
+                      <p>
+                        <strong>Location:</strong> {job.location}
+                      </p>
+                      <p>
+                        <strong>Salary:</strong> {job.salary}
+                      </p>
+                      <p>
+                        <strong>Requirements:</strong> {job.requirements}
+                      </p>
+                      <button
+                        onClick={() => handleApply(job)}
+                        className="mt-2 bg-slate-400 text-white px-4 py-2 rounded-3xl hover:bg-slate-500"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <p>No jobs found</p>
+                )}
               </div>
             </div>
           )}
